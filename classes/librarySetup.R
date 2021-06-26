@@ -77,6 +77,17 @@ suc = unlist ( lapply(list.of.bio.packages, require, character.only = TRUE) )
 if(sum(suc) < length(list.of.bio.packages) )
 	cat ("\n\nWarnning!!!!!! These Bioconductor packages cannot be loaded:", list.of.bio.packages[!suc] )
 
-
-
-
+### 批量安装
+bioPackages <- c(list.of.packages,list.of.bio.packages)
+lapply( bioPackages, 
+        function( bioPackage ){
+          if( ! bioPackage %in% rownames(installed.packages()) ){
+            CRANpackages <- available.packages()
+            if( bioPackage %in% rownames( CRANpackages) ){
+              install.packages( bioPackage, quiet = TRUE )
+            }else{
+              BiocManager::install( bioPackage, suppressUpdates = FALSE, update = FALSE, ask = FALSE)
+            }
+          }
+        }
+)
