@@ -117,6 +117,7 @@ STRING10_species = read.csv(paste0(datapath, "data_go/STRING11_species.csv"))
 # species = get_STRING_species(version="10", species_name=NULL)
 # write.csv(species,"STRING10_species.csv")
 # Also this STRINGdb package downloads a lot of file from the website. Needs to clean the temp folder from time to time. 
+# https://stringdb-static.org/download/species.v11.0.txt
 
 # prepare species list
 
